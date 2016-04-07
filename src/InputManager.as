@@ -106,7 +106,7 @@ package
 			}
 			_loadedBitmaps.push(loadedBitmap);
 			
-			if (_loadedBitmaps.length > 0)
+			if (_loadList.length > 0)
 			{
 				load();
 			}
