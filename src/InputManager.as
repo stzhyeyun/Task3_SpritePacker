@@ -36,7 +36,7 @@ package
 
 				for (var i:int = 0; i < fileList.length; i++)
 				{					// 확장자로 필터링
-					if(fileList[i].name.match(/\.(jpe?g|png|gif)$/i))
+					if(fileList[i].name.match(/\.(jpe?g|png)$/i))
 					{
 						var filepath:String = fileList[i].parent.name + "/" + fileList[i].name;
 						_loadList.push(filepath);
