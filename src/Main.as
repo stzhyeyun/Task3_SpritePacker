@@ -23,10 +23,8 @@ package
 			
 			
 			
-			
-			
-			
-			resourceFolder = null;
+						
+//			resourceFolder = null;
 		}
 		
 		public function setBitmaps(sprites:Vector.<Bitmap>):void
