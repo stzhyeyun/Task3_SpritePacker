@@ -21,9 +21,9 @@ package
 			
 			// Packing & Output
 			var packer:Packer = new Packer();
-			var ouputManager:OutputManager = new OutputManager();
+			var outputManager:OutputManager = new OutputManager();
 			
-			ouputManager.export(resourceFolder, packer.pack(_sprites));
+			outputManager.export(resourceFolder, "HOS", packer.pack(_sprites));
 			
 			
 						
