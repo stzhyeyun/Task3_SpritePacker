@@ -8,7 +8,7 @@ package
 	
 	public class Main extends Sprite
 	{
-		private var _loadedBitmaps:Vector.<Bitmap>;
+		private var _sprites:Vector.<Bitmap>;
 		
 		public function Main()
 		{
@@ -30,20 +30,20 @@ package
 			resourceFolder = null;
 		}
 		
-		public function setBitmaps(bitmaps:Vector.<Bitmap>):void
+		public function setBitmaps(sprites:Vector.<Bitmap>):void
 		{
-			_loadedBitmaps = bitmaps;
+			_sprites = sprites;
 		}
 		
 		private function onExit(event:Event):void
 		{
-			if (_loadedBitmaps)
+			if (_sprites)
 			{
-				for (var i:int = 0; i < _loadedBitmaps.length; i++)
+				for (var i:int = 0; i < _sprites.length; i++)
 				{
-					_loadedBitmaps[i] = null;
+					_sprites[i] = null;
 				}
-				_loadedBitmaps = null;
+				_sprites = null;
 			}	
 
 			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
