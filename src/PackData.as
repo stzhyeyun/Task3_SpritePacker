@@ -24,6 +24,11 @@ package
 		
 		public function get spriteData():Vector.<SpriteData>
 		{
+			if (!_spriteData)
+			{
+				_spriteData = new Vector.<SpriteData>();	
+			}
+			
 			return _spriteData;	
 		}		
 	}
