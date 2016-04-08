@@ -8,6 +8,7 @@ package
 	
 	public class Main extends Sprite
 	{
+		private var _resourceFolder:File;
 		private var _sprites:Vector.<Bitmap>;
 		
 		public function Main()
@@ -22,12 +23,14 @@ package
 			// Packing & Output
 			var packer:Packer = new Packer();
 			var outputManager:OutputManager = new OutputManager();
+			_resourceFolder = File.applicationDirectory.resolvePath("Resources");
 			
 			outputManager.export(resourceFolder, "HOS", packer.pack(_sprites));
 			
 			
 						
 //			resourceFolder = null;
+			inputManager.setup(_resourceFolder, this);
 		}
 		
 		public function setBitmaps(sprites:Vector.<Bitmap>):void
@@ -37,6 +40,8 @@ package
 		
 		private function onExit(event:Event):void
 		{
+			_resourceFolder = null;
+			
 			if (_sprites)
 			{
 				for (var i:int = 0; i < _sprites.length; i++)
