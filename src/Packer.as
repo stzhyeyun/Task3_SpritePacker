@@ -12,6 +12,7 @@ package
 		
 		public function Packer()
 		{
+			_size = 2048;
 		}
 	}
 }
