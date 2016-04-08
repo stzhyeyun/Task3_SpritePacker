@@ -7,10 +7,24 @@ package
 		private var _spriteSheet:Bitmap;
 		private var _spriteData:Vector.<SpriteData>;
 		
-		public function PackData(spriteSheet:Bitmap, spriteData:Vector.<SpriteData>)
+		public function PackData()
+		{
+
+		}
+		
+		public function get spriteSheet():Bitmap
+		{
+			return _spriteSheet;
+		}
+		
+		public function set spriteSheet(spriteSheet:Bitmap):void
 		{
 			_spriteSheet = spriteSheet;
-			_spriteData = spriteData;
 		}
+		
+		public function get spriteData():Vector.<SpriteData>
+		{
+			return _spriteData;	
+		}		
 	}
 }
