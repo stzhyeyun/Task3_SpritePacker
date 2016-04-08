@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:d166ce8b9d03fa48c6ae6db92d5aaaa0:a608882cd7b7914108dd23b1fb8358bd:1204c4f1ef3c3a19b4a7d279ae96ff5a$ -->
+<TextureAtlas imagePath="hos-0.png" width="4004" height="3018">
+    <SubTexture name="abathur" x="3012" y="1905" width="903" height="562" frameX="-75" frameY="-57" frameWidth="1024" frameHeight="640"/>
+    <SubTexture name="etc" x="2229" y="2686" width="275" height="300"/>
+    <SubTexture name="gazlowe" x="3012" y="2469" width="749" height="529" frameX="-195" frameY="-88" frameWidth="1024" frameHeight="640"/>
+    <SubTexture name="illidan" x="1" y="2139" rotated="true" width="835" height="878" frameX="-8" frameY="-33" frameWidth="886" frameHeight="886"/>
+    <SubTexture name="liming" x="838" y="2139" rotated="true" width="989" height="808"/>
+    <SubTexture name="logo" x="1829" y="2139" rotated="true" width="150" height="480" frameX="-36" frameY="0" frameWidth="553" frameHeight="150"/>
+    <SubTexture name="malfurion" x="1829" y="2686" rotated="true" width="398" height="300"/>
+    <SubTexture name="raynor" x="1" y="1" width="1996" height="2136"/>
+    <SubTexture name="rexxar" x="2783" y="2686" width="180" height="175" frameX="-23" frameY="0" frameWidth="230" frameHeight="175"/>
+    <SubTexture name="thrall" x="1999" y="1" width="2004" height="1902"/>
+    <SubTexture name="valla" x="2506" y="2686" width="275" height="300"/>
+    <SubTexture name="xul" x="1999" y="1905" rotated="true" width="1011" height="779" frameX="-5" frameY="-9" frameWidth="784" frameHeight="1020"/>
+</TextureAtlas>
