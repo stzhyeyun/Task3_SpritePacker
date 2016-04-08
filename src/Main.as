@@ -16,13 +16,9 @@ package
 			NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExit);
 			
 			// Input
-			var inputManager:InputManager = new InputManager();
-			var resourceFolder:File = File.applicationDirectory.resolvePath("Resources");
-			inputManager.setup(resourceFolder, this);
-			
 			_resourceFolder = File.applicationDirectory.resolvePath("Resources");
 			
-//			resourceFolder = null;
+			var inputManager:InputManager = new InputManager();
 			inputManager.setup(_resourceFolder, this);
 		}
 		
