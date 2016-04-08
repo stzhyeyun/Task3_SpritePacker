@@ -225,12 +225,7 @@ package
 			{
 				return false;	
 			}			
-		}	
-		
-//		private function getIntersection(space:Rectangle, sprite:Bitmap):Rectangle
-//		{
-//			return space.intersection(new Rectangle(space.x, space.y, sprite.width, sprite.height));
-//		}
+		}
 		
 		private function trim():void // additional
 		{
