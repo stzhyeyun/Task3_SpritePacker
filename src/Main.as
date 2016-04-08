@@ -20,7 +20,10 @@ package
 			inputManager.setup(resourceFolder, this);
 			
 			// Packing & Output
+			var packer:Packer = new Packer();
+			var ouputManager:OutputManager = new OutputManager();
 			
+			ouputManager.export(resourceFolder, packer.pack(_sprites));
 			
 			
 						
