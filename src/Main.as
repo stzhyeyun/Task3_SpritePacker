@@ -20,15 +20,8 @@ package
 			var resourceFolder:File = File.applicationDirectory.resolvePath("Resources");
 			inputManager.setup(resourceFolder, this);
 			
-			// Packing & Output
-			var packer:Packer = new Packer();
-			var outputManager:OutputManager = new OutputManager();
 			_resourceFolder = File.applicationDirectory.resolvePath("Resources");
 			
-			outputManager.export(resourceFolder, "HOS", packer.pack(_sprites));
-			
-			
-						
 //			resourceFolder = null;
 			inputManager.setup(_resourceFolder, this);
 		}
@@ -36,6 +29,17 @@ package
 		public function setBitmaps(sprites:Vector.<Bitmap>):void
 		{
 			_sprites = sprites;
+			
+			startPacking();
+		}
+		
+		private function startPacking():void
+		{
+			// Packing & Output
+			var packer:Packer = new Packer();
+			var outputManager:OutputManager = new OutputManager();
+			
+			outputManager.export(_resourceFolder, "HOS", packer.pack(_sprites));
 		}
 		
 		private function onExit(event:Event):void
