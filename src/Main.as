@@ -19,9 +19,8 @@ package
 			var resourceFolder:File = File.applicationDirectory.resolvePath("Resources");
 			inputManager.setup(resourceFolder, this);
 			
-			// Packing
+			// Packing & Output
 			
-			// Output
 			
 			
 			
