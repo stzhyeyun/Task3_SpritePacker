@@ -182,39 +182,25 @@ package
 					var temp:Vector.<Rectangle> = new Vector.<Rectangle>();
 					
 					temp.push(new Rectangle(
-						_space[i].x, _space[i].y, _space[i].width, doubled.y - _space[i].y));
+						_space[i].x, _space[i].y, _space[i].width, doubled.y - _space[i].y)); // top
 					
 					temp.push(new Rectangle(
 						_space[i].x, doubled.y + doubled.height,
-						_space[i].width, _space[i].y + _space[i].height - (doubled.y + doubled.height)));
+						_space[i].width, _space[i].y + _space[i].height - (doubled.y + doubled.height))); // bottom
 					
-					temp.push(new Rectangle(_space[i].x, _space[i].y, doubled.x - _space[i].x, _space[i].height));
-						
+					temp.push(new Rectangle(_space[i].x, _space[i].y, doubled.x - _space[i].x, _space[i].height)); // left
+					
 					temp.push(new Rectangle(
 						doubled.x + doubled.width, _space[i].y,
-						_space[i].x + _space[i].width - (doubled.x + doubled.width), _space[i].height));	
-						
+						_space[i].x + _space[i].width - (doubled.x + doubled.width), _space[i].height)); // right
+					
 					for (var j:int = 0; j < temp.length; j++)
 					{
 						if (temp[j].width > 0 && temp[j].height > 0)
 						{
 							devidedSpace.push(temp[j]);	
 						}							
-					}					
-					
-//					var top:Rectangle = new Rectangle(
-//						_space[i].x, _space[i].y, _space[i].width, doubled.y - _space[i].y);
-//					
-//					var bottom:Rectangle = new Rectangle(
-//						_space[i].x, doubled.y + doubled.height,
-//						_space[i].width, _space[i].y + _space[i].height - (doubled.y + doubled.height));
-//					
-//					var left:Rectangle = new Rectangle(
-//						_space[i].x, _space[i].y, doubled.x - _space[i].x, _space[i].height);
-//					
-//					var right:Rectangle = new Rectangle(
-//						doubled.x + doubled.width, _space[i].y,
-//						_space[i].x + _space[i].width - (doubled.x + doubled.width), _space[i].height);	
+					}	
 				}
 				else
 				{
