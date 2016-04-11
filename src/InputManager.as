@@ -90,8 +90,7 @@ package
 		private function onComplete(event:Event):void
 		{
 			var bitmapData:BitmapData = Bitmap(event.currentTarget.loader.content).bitmapData;
-			//var loadedBitmap:Bitmap = event.currentTarget.loader.content as Bitmap;
-						
+			
 			var filepath:String = _loadList.shift();
 			var filename:String = filepath.substring(filepath.lastIndexOf("/") + 1, filepath.length);
 			filename = filename.substring(0, filename.indexOf("."));
