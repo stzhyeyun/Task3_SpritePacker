@@ -41,11 +41,10 @@ package
 					if (isIn(_space[i], sprites[0]))
 					{
 						// 이미지 병합
-						canvas.merge(
+						canvas.copyPixels(
 							sprites[0].bitmapData,
 							new Rectangle(0, 0, sprites[0].width, sprites[0].height),
-							new Point(_space[i].x, _space[i].y),
-							128, 128, 128, 128);
+							new Point(_space[i].x, _space[i].y));
 						
 						// SpriteData 작성
 						var data:SpriteData = new SpriteData();
@@ -69,11 +68,10 @@ package
 						sprites[0].rotation += 90;
 						
 						// 이미지 병합
-						canvas.merge(
+						canvas.copyPixels(
 							sprites[0].bitmapData,
 							new Rectangle(0, 0, sprites[0].height, sprites[0].width),
-							new Point(_space[i].x, _space[i].y),
-							128, 128, 128, 128);
+							new Point(_space[i].x, _space[i].y));
 						
 						// SpriteData 작성
 						var data:SpriteData = new SpriteData();
