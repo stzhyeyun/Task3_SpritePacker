@@ -23,7 +23,7 @@ package
 
 			// 패킹 준비
 			var packData:PackData = new PackData();
-			var canvas:BitmapData = new BitmapData(_size, _size, true, 0xFFFFFFFF);	
+			var canvas:BitmapData = new BitmapData(_size, _size, true, 0x00FFFFFF);
 			if (!_space)
 			{
 				_space = new Vector.<Rectangle>();
