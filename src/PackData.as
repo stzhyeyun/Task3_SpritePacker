@@ -13,6 +13,20 @@ package
 
 		}
 		
+		public function dispose():void
+		{
+			_spriteSheet.dispose();
+			
+			if (_spriteData && _spriteData.length > 0)
+			{
+				for (var i:int = 0; i < _spriteData.length; i++)
+				{
+					_spriteData[i] = null;
+				}
+			}
+			_spriteData = null;
+		}
+		
 		public function get numInput():int
 		{
 			return _numInput;
