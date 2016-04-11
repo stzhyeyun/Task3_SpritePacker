@@ -8,27 +8,30 @@ package
 
 	public class Packer
 	{
-		private var _size:Number;	
 		private var _space:Vector.<Rectangle>;
 		
 		public function Packer()
 		{
-			_size = 2048;
+
 		}
 		
 		public function pack(sprites:Vector.<Bitmap>):PackData // Maximal Rectangles Algorithm
 		{
 			// 면적으로 정렬
 			sprites.sort(compareAreaForDescendingSort);
-
+			
+			var size:Number = setCanvasSize(sprites);
+			trace("[Packer] Size of sprite sheet : " + size); // 디버깅 코드
+			
 			// 패킹 준비
 			var packData:PackData = new PackData();
-			var canvas:BitmapData = new BitmapData(_size, _size, true, 0x00FFFFFF);
+			packData.numInput = sprites.length; // 디버깅 코드
+			var canvas:BitmapData = new BitmapData(size, size, true, 0x00FFFFFF);
 			if (!_space)
 			{
 				_space = new Vector.<Rectangle>();
 			}
-			_space.push(new Rectangle(0, 0, _size, _size));
+			_space.push(new Rectangle(0, 0, size, size));
 				
 			// 패킹
 			var isPacked:Boolean = false;
@@ -57,7 +60,7 @@ package
 
 						packData.spriteData.push(data);
 						isPacked = true;
-
+						
 						// 남은 _space 재설정						
 						devideSpace(data);
 												
@@ -67,7 +70,7 @@ package
 					{
 						// 스프라이트 회전 및 이동
 						var mat:Matrix = new Matrix();
-						mat.rotate(90 / 180 * Math.PI);
+						mat.rotate(degreeToRadian(90));
 						mat.translate(_space[i].x + sprites[0].height, _space[i].y);
 						
 						// 이미지 병합
@@ -114,6 +117,53 @@ package
 			packData.spriteSheet = canvas;
 			
 			return packData;
+		}
+		
+		private function setCanvasSize(sprites:Vector.<Bitmap>):Number
+		{
+			var totalArea:Number = 0;
+			for (var i:int = 0; i < sprites.length; i++)
+			{
+				totalArea += sprites[i].width * sprites[i].height;
+			}
+			
+			var size:Number = Math.round(Math.sqrt(totalArea));
+			
+			if (!isPowerOfTwo(size))
+			{
+				var binary:String = size.toString(2);
+				size = Math.pow(2, binary.length);
+			}
+			
+			return size;
+		}
+		
+		private function isPowerOfTwo(num:Number):Boolean
+		{
+			var binary:String = num.toString(2);
+			var result:Boolean = true;
+			var count:int = 0;
+			
+			for (var i:int = 0; i < binary.length; i++)
+			{
+				if (binary.charAt(i) == "1")
+				{
+					count++;
+					
+					if (count > 1)
+					{
+						result = false;
+						break;
+					}
+				}
+			}
+			
+			return result;
+		}
+		
+		private function degreeToRadian(degree:Number):Number
+		{
+			return degree / 180 * Math.PI; 
 		}
 
 		private function devideSpace(mergedSprite:SpriteData):void
@@ -229,7 +279,7 @@ package
 		{
 			
 		}
-		
+
 		private function compareAreaForDescendingSort(x:Bitmap, y:Bitmap):int 
 		{ 
 			var areaX:Number = x.width * x.height;
