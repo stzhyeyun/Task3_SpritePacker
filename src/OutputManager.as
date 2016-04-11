@@ -33,12 +33,16 @@ package
 		
 		private function exportPNG():void
 		{
+			trace("[OutputManager] Start exporting PNG");
+			
 			_exporter.save(PNGEncoder.encode(_outdata.spriteSheet), _outName + ".png");
 			_exporter.addEventListener(Event.COMPLETE, onCompleteExportingPNG);
 		}
 		
 		private function exportXML():void
 		{
+			trace("[OutputManager] Start exporting XML");
+			
 			// XML 작성
 			var name:String = _outName + ".png"; // 사용자 지정 이름으로 변경할 것
 			var width:String = _outdata.spriteSheet.width.toString();
@@ -73,11 +77,15 @@ package
 		
 		private function onCompleteExportingPNG(event:Event):void
 		{
+			trace("[OutputManager] Completed exporting PNG");
+			
 			exportXML();
 		}
 		
 		private function onCompleteExportingXML(event:Event):void
 		{
+			trace("[OutputManager] Completed exporting XML");
+			
 			_exporter.removeEventListener(Event.COMPLETE, onCompleteExportingXML);		
 
 			_exporter = null;
