@@ -4,12 +4,23 @@ package
 
 	public class PackData
 	{
+		private var _numInput:int;
 		private var _spriteSheet:BitmapData;
 		private var _spriteData:Vector.<SpriteData>;
 		
 		public function PackData()
 		{
 
+		}
+		
+		public function get numInput():int
+		{
+			return _numInput;
+		}
+		
+		public function set numInput(num:int):void
+		{
+			_numInput = num;
 		}
 		
 		public function get spriteSheet():BitmapData

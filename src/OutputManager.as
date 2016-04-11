@@ -12,6 +12,10 @@ package
 		
 		public function export(outputName:String, data:PackData):void
 		{
+			// 디버깅 코드
+			trace("Input item : " + data.numInput.toString() +
+				" / Packed item : " + data.spriteData.length.toString());
+			
 			// XML 작성
 			
 			
