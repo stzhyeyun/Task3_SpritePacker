@@ -127,7 +127,7 @@ package
 					new Rectangle(mergedSprite.x, mergedSprite.y, 
 						mergedSprite.width, mergedSprite.height));
 				
-				if (doubled.width != 0 && doubled.height != 0) // 겹치는 부분이 있음
+				if (doubled.x != 0 && doubled.y != 0 && doubled.width != 0 && doubled.height != 0) // 겹치는 부분이 있음
 				{
 					var temp:Vector.<Rectangle> = new Vector.<Rectangle>();
 					
