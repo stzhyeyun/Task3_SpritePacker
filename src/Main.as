@@ -35,7 +35,7 @@ package
 			var packer:Packer = new Packer();
 			var outputManager:OutputManager = new OutputManager();
 			
-			outputManager.export(_resourceFolder, "HOS", packer.pack(_sprites));
+			outputManager.export("HOS", packer.pack(_sprites)); // 선택한 폴더명으로 디폴트 지정할 것
 		}
 		
 		private function onExit(event:Event):void

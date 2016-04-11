@@ -9,7 +9,7 @@ package
 			
 		}
 		
-		public function export(destination:File, outputName:String, data:PackData):void
+		public function export(outputName:String, data:PackData):void
 		{
 			
 		}
