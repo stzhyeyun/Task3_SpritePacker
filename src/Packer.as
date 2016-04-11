@@ -60,7 +60,7 @@ package
 
 						// 남은 _space 재설정						
 						devideSpace(data);
-						
+												
 						break;
 					}
 					else if (isInIfRotated(_space[i], sprites[0]))
