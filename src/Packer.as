@@ -8,17 +8,32 @@ package
 
 	public class Packer
 	{
+		private var _maxSize:Number;
 		private var _space:Vector.<Rectangle>;
+		private var _unpackedSprites:Vector.<Bitmap>;
+		private var _packData:Vector.<PackData>;
 		
-		public function Packer()
+		public function Packer(maxSize:Number)
 		{
-
+			_maxSize = maxSize;
 		}
 		
-		public function pack(sprites:Vector.<Bitmap>):PackData // Maximal Rectangles Algorithm
+		public function pack(sprites:Vector.<Bitmap>, needToSort:Boolean):Vector.<PackData> // Maximal Rectangles Algorithm
 		{
+//			if (_unpackedSprites && _unpackedSprites.length > 0)
+//			{
+//				for (var i:int = 0; i < _unpackedSprites.length; i++)
+//				{
+//					//_unpackedSprites[i] = null;
+//					_unpackedSprites.pop();
+//				}
+//			}			
+			
 			// 면적으로 정렬
-			sprites.sort(compareAreaForDescendingSort);
+			if (needToSort)
+			{
+				sprites.sort(compareAreaForDescendingSort);
+			}
 			
 			var size:Number = setCanvasSize(sprites);
 			trace("[Packer] Size of sprite sheet : " + size); // 디버깅 코드
@@ -35,7 +50,7 @@ package
 				
 			// 패킹
 			var isPacked:Boolean = false;
-			var unpackedSprites:Vector.<Bitmap>;
+			//var unpackedSprites:Vector.<Bitmap>;
 			
 			while (sprites.length > 0)
 			{			
@@ -98,11 +113,11 @@ package
 				// 패킹되지 못한 스프라이트 저장
 				if (!isPacked)
 				{
-					if (!unpackedSprites)
+					if (!_unpackedSprites)
 					{
-						unpackedSprites = new Vector.<Bitmap>();
+						_unpackedSprites = new Vector.<Bitmap>();
 					}
-					unpackedSprites.push(sprites[0]);
+					_unpackedSprites.push(sprites[0]);
 				}
 				sprites.shift();
 								
@@ -110,13 +125,32 @@ package
 									
 			} // while
 			
-			// 패킹되지 못한 스프라이트의 처리
-			// to do
-			
 			// 스프라이트 시트 저장
 			packData.spriteSheet = canvas;
 			
-			return packData;
+			if (!_packData)
+			{
+				_packData = new Vector.<PackData>();
+			}
+			_packData.push(packData);
+			
+			while (_unpackedSprites && _unpackedSprites.length > 0)
+			{
+//				for (var i:int = 0; i < _space.length; i++)
+//				{
+//					_space.pop();
+//				}
+				_space = null;
+				
+				pack(_unpackedSprites, false);
+			}
+			
+			return _packData;	
+		}
+		
+		public function get unpackedSprites():Vector.<Bitmap>
+		{
+			return _unpackedSprites;
 		}
 		
 		private function setCanvasSize(sprites:Vector.<Bitmap>):Number
@@ -127,7 +161,7 @@ package
 				totalArea += sprites[i].width * sprites[i].height;
 			}
 			
-			var size:Number = Math.round(Math.sqrt(totalArea));
+			var size:Number = Math.min(Math.round(Math.sqrt(totalArea)), _maxSize);
 			
 			if (!isPowerOfTwo(size))
 			{
