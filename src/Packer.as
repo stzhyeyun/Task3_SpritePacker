@@ -65,21 +65,13 @@ package
 					}
 					else if (isInIfRotated(_space[i], sprites[0]))
 					{
-						// 스프라이트 회전
-						//sprites[0].rotation += 90;
-						
+						// 스프라이트 회전 및 이동
 						var mat:Matrix = new Matrix();
 						mat.rotate(90 / 180 * Math.PI);
 						mat.translate(_space[i].x + sprites[0].height, _space[i].y);
 						
-						
 						// 이미지 병합
 						canvas.draw(sprites[0].bitmapData, mat);
-						
-//						canvas.copyPixels(
-//							sprites[0].bitmapData,
-//							new Rectangle(0, 0, sprites[0].height, sprites[0].width),
-//							new Point(_space[i].x, _space[i].y));
 						
 						// SpriteData 작성
 						var data:SpriteData = new SpriteData();
