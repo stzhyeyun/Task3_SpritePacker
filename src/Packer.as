@@ -112,8 +112,8 @@ package
 			// 패킹되지 못한 스프라이트의 처리
 			// to do
 			
-			// 스프라이트 시트 저장 as Bitmap
-			packData.spriteSheet = new Bitmap(canvas);
+			// 스프라이트 시트 저장
+			packData.spriteSheet = canvas;
 			
 			return packData;
 		}
