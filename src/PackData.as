@@ -1,10 +1,10 @@
 package
 {
-	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 
 	public class PackData
 	{
-		private var _spriteSheet:Bitmap;
+		private var _spriteSheet:BitmapData;
 		private var _spriteData:Vector.<SpriteData>;
 		
 		public function PackData()
@@ -12,12 +12,12 @@ package
 
 		}
 		
-		public function get spriteSheet():Bitmap
+		public function get spriteSheet():BitmapData
 		{
 			return _spriteSheet;
 		}
 		
-		public function set spriteSheet(spriteSheet:Bitmap):void
+		public function set spriteSheet(spriteSheet:BitmapData):void
 		{
 			_spriteSheet = spriteSheet;
 		}
