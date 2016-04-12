@@ -32,7 +32,6 @@ package
 				}
 				
 				var fileList:Array = resourceFolder.getDirectoryListing();
-				// browseForOpen()
 
 				for (var i:int = 0; i < fileList.length; i++)
 				{	
