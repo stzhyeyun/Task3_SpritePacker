@@ -41,9 +41,24 @@ package
 		}
 		
 		private function startLoading():void
+		public function startExporting():void
 		{
-			var inputManager:InputManager = new InputManager();
-			inputManager.setup(_resourceFolder, this);
+			if (!_outputManager)
+			{
+				_outputManager = new OutputManager(this);
+			}
+			
+			if (_packData && _packData.length > 0)
+			{
+				_outputManager.export("temp", _packData[0]);
+				_packData.shift();
+			}
+			else
+			{
+				trace("[Main] End of Process");
+				
+				clean();
+			}
 		}
 		
 		private function startPacking():void
@@ -54,6 +69,8 @@ package
 				_packer = new Packer(2048); 
 			}
 			_packData = _packer.pack(_sprites, true);
+
+			startExporting();
 		}
 		
 		private function onExit(event:Event):void
