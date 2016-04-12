@@ -32,7 +32,7 @@ package
 			
 			if (_packData && _packData.length > 0)
 			{
-				for (var i:int = 0; i < _space.length; i++)
+				for (var i:int = 0; i < _packData.length; i++)
 				{
 					_packData[i].dispose();
 					_packData[i] = null;
