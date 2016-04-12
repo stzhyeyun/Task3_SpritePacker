@@ -145,7 +145,7 @@ package
 				_resourceFolder = new File();
 			}
 			_resourceFolder.addEventListener(Event.SELECT, onResourceFolderSelected);
-			_resourceFolder.browseForDirectory("Select Resource Folder");
+			_resourceFolder.browseForDirectory("Select \"Resource\" Folder");
 		}
 		
 		private function onResourceFolderSelected(event:Event):void
@@ -157,7 +157,7 @@ package
 				_exportFolder = new File();
 			}
 			_exportFolder.addEventListener(Event.SELECT, onExportFolderSelected);
-			_exportFolder.browseForDirectory("Select Export Folder");
+			_exportFolder.browseForDirectory("Select \"Export\" Folder");
 		}
 		
 		private function onExportFolderSelected(event:Event):void
