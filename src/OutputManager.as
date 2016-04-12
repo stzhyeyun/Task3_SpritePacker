@@ -3,24 +3,32 @@ package
 	import com.adobe.images.PNGEncoder;
 	
 	import flash.events.Event;
+	import flash.events.OutputProgressEvent;
+	import flash.events.ProgressEvent;
 	import flash.filesystem.File;
+	import flash.filesystem.FileMode;
+	import flash.filesystem.FileStream;
 	import flash.utils.ByteArray;
 	
 	public class OutputManager
 	{
 		private var _orderer:Main;
 		private var _exporter:File;
+		private var _outDirectory:File;
 		private var _outName:String;
 		private var _outdata:PackData;
+//		private var _PNG:File;
+//		private var _XML:File;
 		
 		public function OutputManager(orderer:Main)
 		{
 			_orderer = orderer;
 		}
 		
-		public function export(outputName:String, data:PackData):void
+		public function export(destination:File, outputName:String, data:PackData):void
 		{
 			_exporter = new File();
+			_outDirectory = destination;
 			_outName = outputName;
 			_outdata = data;
 			
