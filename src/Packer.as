@@ -53,9 +53,9 @@ package
 			trace("[Packer] Size of sprite sheet : " + size); // 디버깅 코드
 			
 			// 패킹 준비
-			var packData:PackData = new PackData();
+			var  packData:PackData = new PackData();
 			packData.numInput = sprites.length; // 디버깅 코드
-			var canvas:BitmapData = new BitmapData(size, size, true, 0x00FFFFFF);
+			var canvas:BitmapData = new BitmapData(size, size, true, 0x00FFFFFF); // 투명
 			if (!_space)
 			{
 				_space = new Vector.<Rectangle>();
