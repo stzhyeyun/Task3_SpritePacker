@@ -109,11 +109,6 @@ package
 		
 		private function clean():void
 		{
-			_resourceFolder.removeEventListener(Event.SELECT, onResourceFolderSelected);
-			_resourceFolder = null;			
-			_exportFolder.removeEventListener(Event.SELECT, onResourceFolderSelected);
-			_exportFolder = null;
-			
 			_outputManager = null;
 			
 			if (_packer)
@@ -178,9 +173,16 @@ package
 		{
 			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
 			
-			_button.removeChildren();
-			removeChildren();
+			_resourceFolder.removeEventListener(Event.SELECT, onResourceFolderSelected);
+			_resourceFolder = null;
 			
+			_exportFolder.removeEventListener(Event.SELECT, onResourceFolderSelected);
+			_exportFolder = null;
+			
+			_button.removeChildren();
+			_button = null;
+			
+			removeChildren();
 			clean();
 		}
 	}
