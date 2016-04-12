@@ -10,7 +10,6 @@ package
 	{
 		private var _maxSize:Number;
 		private var _space:Vector.<Rectangle>;
-		private var _unpackedSprites:Vector.<Bitmap>;
 		private var _packData:Vector.<PackData>;
 		
 		public function Packer(maxSize:Number)
@@ -20,14 +19,6 @@ package
 		
 		public function pack(sprites:Vector.<Bitmap>, needToSort:Boolean):Vector.<PackData> // Maximal Rectangles Algorithm
 		{
-//			if (_unpackedSprites && _unpackedSprites.length > 0)
-//			{
-//				for (var i:int = 0; i < _unpackedSprites.length; i++)
-//				{
-//					//_unpackedSprites[i] = null;
-//					_unpackedSprites.pop();
-//				}
-//			}			
 			
 			// 면적으로 정렬
 			if (needToSort)
@@ -113,11 +104,8 @@ package
 				// 패킹되지 못한 스프라이트 저장
 				if (!isPacked)
 				{
-					if (!_unpackedSprites)
 					{
-						_unpackedSprites = new Vector.<Bitmap>();
 					}
-					_unpackedSprites.push(sprites[0]);
 				}
 				sprites.shift();
 								
@@ -134,7 +122,6 @@ package
 			}
 			_packData.push(packData);
 			
-			while (_unpackedSprites && _unpackedSprites.length > 0)
 			{
 //				for (var i:int = 0; i < _space.length; i++)
 //				{
@@ -142,15 +129,9 @@ package
 //				}
 				_space = null;
 				
-				pack(_unpackedSprites, false);
 			}
 			
 			return _packData;	
-		}
-		
-		public function get unpackedSprites():Vector.<Bitmap>
-		{
-			return _unpackedSprites;
 		}
 		
 		private function setCanvasSize(sprites:Vector.<Bitmap>):Number
