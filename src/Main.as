@@ -9,6 +9,7 @@ package
 	public class Main extends Sprite
 	{
 		private var _resourceFolder:File;
+		private var _inputManager:InputManager;
 		private var _packer:Packer;
 		private var _outputManager:OutputManager;
 		private var _sprites:Vector.<Bitmap>;
@@ -19,18 +20,13 @@ package
 			NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExit);
 			
 			// Input
-			_resourceFolder = File.applicationDirectory.resolvePath("Resources");
-			
-			var inputManager:InputManager = new InputManager();
-			inputManager.setup(_resourceFolder, this);
-			
-//			var _resourceFolder:File = new File(); 
-//			_resourceFolder.addEventListener(Event.SELECT, onDirectorySelected); 
-//			_resourceFolder.browseForDirectory("Select a directory"); 
-//			function onDirectorySelected(event:Event):void
-//			{
-//				startLoading();
-//			}
+			if (!_resourceFolder)
+			{
+				_resourceFolder = new File();
+			}
+			_resourceFolder.addEventListener(Event.CANCEL, onCanceled);
+			_resourceFolder.addEventListener(Event.SELECT, onDirectorySelected);
+			_resourceFolder.browseForDirectory("Select Resource Folder");
 		}
 		
 		public function setBitmaps(sprites:Vector.<Bitmap>):void
@@ -41,6 +37,14 @@ package
 		}
 		
 		private function startLoading():void
+		{
+			if (!_inputManager)
+			{
+				_inputManager = new InputManager();
+			}
+			_inputManager.setup(_resourceFolder, this);
+		}
+		
 		public function startExporting():void
 		{
 			if (!_outputManager)
@@ -106,6 +110,18 @@ package
 			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
 			
 			clean();
+		}
+		
+		private function onCanceled(event:Event):void
+		{
+			// to do
+			
+		}
+		
+		private function onDirectorySelected(event:Event):void
+		{
+			_resourceFolder = File(event.target); // 선택된 디렉토리
+			startLoading();
 		}
 	}
 }
