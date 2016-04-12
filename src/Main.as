@@ -173,11 +173,17 @@ package
 		{
 			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
 			
-			_resourceFolder.removeEventListener(Event.SELECT, onResourceFolderSelected);
-			_resourceFolder = null;
+			if (_resourceFolder)
+			{
+				_resourceFolder.removeEventListener(Event.SELECT, onResourceFolderSelected);
+				_resourceFolder = null;
+			}
 			
-			_exportFolder.removeEventListener(Event.SELECT, onResourceFolderSelected);
-			_exportFolder = null;
+			if (_exportFolder)
+			{
+				_exportFolder.removeEventListener(Event.SELECT, onResourceFolderSelected);
+				_exportFolder = null;
+			}
 			
 			_button.removeChildren();
 			_button = null;
