@@ -73,20 +73,39 @@ package
 			startExporting();
 		}
 		
-		private function onExit(event:Event):void
+		private function clean():void
 		{
-			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
-			
 			_resourceFolder = null;
+			_outputManager = null;
 			
-			if (_sprites)
+			_packer.clean();
+			_packer = null;
+			
+			if (_sprites && _sprites.length > 0)
 			{
 				for (var i:int = 0; i < _sprites.length; i++)
 				{
 					_sprites[i] = null;
 				}
-				_sprites = null;
-			}				
+			}
+			_sprites = null;
+			
+			if (_packData && _packData.length > 0)
+			{
+				for (var i:int = 0; i < _packData.length; i++)
+				{
+					_packData[i].dispose();
+					_packData[i] = null;
+				}
+			}
+			_packData = null;
+		}
+		
+		private function onExit(event:Event):void
+		{
+			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
+			
+			clean();
 		}
 	}
 }
