@@ -88,8 +88,13 @@ package
 			trace("[OutputManager] Completed exporting XML");
 			
 			_exporter.removeEventListener(Event.COMPLETE, onCompleteExportingXML);		
-
+			clean();
+			
 			_orderer.startExporting();
+		}
+		
+		private function clean():void
+		{
 			_exporter = null;
 			_outName = null;
 			_outdata.dispose();
