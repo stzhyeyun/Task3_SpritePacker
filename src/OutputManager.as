@@ -8,13 +8,14 @@ package
 	
 	public class OutputManager
 	{
+		private var _orderer:Main;
 		private var _exporter:File;
 		private var _outName:String;
 		private var _outdata:PackData;
 		
-		public function OutputManager()
+		public function OutputManager(orderer:Main)
 		{
-			
+			_orderer = orderer;
 		}
 		
 		public function export(outputName:String, data:PackData):void
@@ -88,6 +89,7 @@ package
 			
 			_exporter.removeEventListener(Event.COMPLETE, onCompleteExportingXML);		
 
+			_orderer.startExporting();
 			_exporter = null;
 			_outName = null;
 			_outdata.dispose();
