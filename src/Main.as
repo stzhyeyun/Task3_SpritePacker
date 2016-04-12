@@ -9,8 +9,10 @@ package
 	public class Main extends Sprite
 	{
 		private var _resourceFolder:File;
+		private var _packer:Packer;
+		private var _outputManager:OutputManager;
 		private var _sprites:Vector.<Bitmap>;
-		private var _outputManager:Vector.<OutputManager>;
+		private var _packData:Vector.<PackData>;
 		
 		public function Main()
 		{
@@ -46,16 +48,12 @@ package
 		
 		private function startPacking():void
 		{
-			// Packing & Output
-			var packer:Packer = new Packer(2048);
-			var packData:Vector.<PackData> = packer.pack(_sprites, true);
-			
-			_outputManager = new Vector.<OutputManager>();
-			for (var i:int = 0; i < packData.length; i++)
+			// Packing
+			if (!_packer)
 			{
-				_outputManager.push(new OutputManager());
-				_outputManager[_outputManager.length - 1].export("temp", packData[i]);	
+				_packer = new Packer(2048); 
 			}
+			_packData = _packer.pack(_sprites, true);
 		}
 		
 		private function onExit(event:Event):void
