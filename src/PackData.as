@@ -4,6 +4,7 @@ package
 
 	public class PackData
 	{
+		private var _id:int;
 		private var _numInput:int;
 		private var _spriteSheet:BitmapData;
 		private var _spriteData:Vector.<SpriteData>;
@@ -25,6 +26,16 @@ package
 				}
 			}
 			_spriteData = null;
+		}
+		
+		public function get id():int
+		{
+			return _id;
+		}
+		
+		public function set id(id:int):void
+		{
+			_id = id;
 		}
 		
 		public function get numInput():int
