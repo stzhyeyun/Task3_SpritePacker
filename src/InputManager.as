@@ -39,7 +39,7 @@ package
 					// 확장자로 필터링
 					if(fileList[i].name.match(/\.(jpe?g|png)$/i))
 					{
-						var filepath:String = fileList[i].parent.name + "/" + fileList[i].name;
+						var filepath:String = File(fileList[i]).nativePath;
 						_loadList.push(filepath);
 						
 						trace("[InputManager] Enqueued ", filepath);
@@ -73,7 +73,7 @@ package
 			var bitmapData:BitmapData = Bitmap(event.currentTarget.loader.content).bitmapData;
 			
 			var filepath:String = _loadList.shift();
-			var filename:String = filepath.substring(filepath.lastIndexOf("/") + 1, filepath.length);
+			var filename:String = filepath.substring(filepath.lastIndexOf("\\") + 1, filepath.length);
 			filename = filename.substring(0, filename.indexOf("."));
 			
 			var loadedBitmap:Bitmap = new Bitmap(bitmapData);
