@@ -36,7 +36,7 @@ package
 		{
 			trace("[OutputManager] Start exporting PNG");
 			
-			_exporter.save(PNGEncoder.encode(_outdata.spriteSheet), _outName + ".png");
+			_exporter.save(PNGEncoder.encode(_outdata.spriteSheet), _outName + _outdata.id.toString() + ".png");
 			_exporter.addEventListener(Event.COMPLETE, onCompleteExportingPNG);
 		}
 		
@@ -45,7 +45,7 @@ package
 			trace("[OutputManager] Start exporting XML");
 			
 			// XML 작성
-			var name:String = _outName + ".png"; // 사용자 지정 이름으로 변경할 것
+			var name:String = _outName + _outdata.id.toString() + ".png";
 			var width:String = _outdata.spriteSheet.width.toString();
 			var height:String = _outdata.spriteSheet.height.toString();
 			
@@ -73,7 +73,7 @@ package
 			
 			_exporter.removeEventListener(Event.COMPLETE, onCompleteExportingPNG);
 			_exporter.addEventListener(Event.COMPLETE, onCompleteExportingXML);
-			_exporter.save(bytes, _outName + ".xml");
+			_exporter.save(bytes, _outName + _outdata.id.toString() + ".xml");
 		}
 		
 		private function onCompleteExportingPNG(event:Event):void
