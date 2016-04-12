@@ -82,7 +82,10 @@ package
 			_resourceFolder = null;
 			_outputManager = null;
 			
-			_packer.clean();
+			if (_packer)
+			{
+				_packer.clean();
+			}
 			_packer = null;
 			
 			if (_sprites && _sprites.length > 0)
