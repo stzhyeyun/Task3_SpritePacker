@@ -195,6 +195,30 @@ package
 			return result;
 		}
 		
+		private function isIn(space:Rectangle, sprite:Bitmap):Boolean
+		{
+			if (sprite.width <= space.width && sprite.height <= space.height)
+			{
+				return true;	
+			}
+			else
+			{
+				return false;	
+			}			
+		}
+		
+		private function isInIfRotated(space:Rectangle, sprite:Bitmap):Boolean
+		{
+			if (sprite.width <= space.height && sprite.height <= space.width)
+			{
+				return true;	
+			}
+			else
+			{
+				return false;	
+			}			
+		}
+		
 		private function degreeToRadian(degree:Number):Number
 		{
 			return degree / 180 * Math.PI; 
@@ -269,30 +293,6 @@ package
 			
 			// 결과 저장
 			_space = devidedSpace;
-		}
-		
-		private function isIn(space:Rectangle, sprite:Bitmap):Boolean
-		{
-			if (sprite.width <= space.width && sprite.height <= space.height)
-			{
-				return true;	
-			}
-			else
-			{
-				return false;	
-			}			
-		}
-		
-		private function isInIfRotated(space:Rectangle, sprite:Bitmap):Boolean
-		{
-			if (sprite.width <= space.height && sprite.height <= space.width)
-			{
-				return true;	
-			}
-			else
-			{
-				return false;	
-			}			
 		}
 		
 		private function trim():void // additional
