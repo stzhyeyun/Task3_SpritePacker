@@ -7,6 +7,8 @@ package
 	import flash.events.MouseEvent;
 	import flash.filesystem.File;
 	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	
@@ -14,18 +16,27 @@ package
 	{
 		private var _resourceFolder:File;
 		private var _exportFolder:File;
+		
 		private var _inputManager:InputManager;
 		private var _packer:Packer;
 		private var _outputManager:OutputManager;
+		
 		private var _sprites:Vector.<Bitmap>;
 		private var _packData:Vector.<PackData>;
+		
+		private var _filename:TextField;
+		private var _maxSize:TextField;
 		private var _button:Sprite;
 		
 		public function Main()
 		{
 			NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExit);
+
+			var width:Number = 250;
+			var height:Number = 30;
 			
-			setButton(250, 30);
+			//setSettingField(width, height);
+			setButton(width, height);
 		}
 		
 		public function setBitmaps(sprites:Vector.<Bitmap>):void
@@ -35,17 +46,62 @@ package
 			startPacking();
 		}
 		
+		private function setSettingField(width:Number, height:Number):void
+		{
+			var margin:Number = height * 0.7;
+			
+			var format:TextFormat = new TextFormat();
+			format.size = 12;
+			format.bold = true;
+			format.font = "Consolas";
+			format.align = TextFormatAlign.LEFT;
+			
+			var filenameField:TextField = new TextField();
+			filenameField.x = stage.nativeWindow.width * 0.255;
+			filenameField.y = stage.nativeWindow.height * 0.2;
+			filenameField.autoSize = TextFieldAutoSize.LEFT;
+			filenameField.defaultTextFormat = format;
+			filenameField.text = "Name for Sprite Sheet";			
+			addChild(filenameField);
+			
+			_filename = new TextField();
+			_filename.x = filenameField.x;
+			_filename.y = filenameField.y + margin;
+			_filename.width = width;
+			_filename.height = height * 0.7;
+			_filename.border = true;
+			_filename.defaultTextFormat = format;
+			_filename.type = TextFieldType.INPUT;
+			_filename.text = "Type here";			
+			addChild(_filename);
+			
+//			var maxSizeField:TextField = new TextField();
+//			maxSizeField.x = filenameField.x;
+//			maxSizeField.y = _filename.y + margin * 1.5;
+//			maxSizeField.autoSize = TextFieldAutoSize.LEFT;
+//			maxSizeField.defaultTextFormat = format;
+//			maxSizeField.text = "Maximum Size for Sprite Sheet";			
+//			addChild(maxSizeField);
+			
+			// ComboBox
+			
+			// CheckBox
+			
+						
+		}
+		
 		private function setButton(width:Number, height:Number):void
 		{
 			_button = new Sprite();
 			_button.buttonMode = true;
 			_button.useHandCursor = false;
 			_button.graphics.lineStyle(1, 0x000000);
-			_button.graphics.beginFill(0xf2f2f2, 1);
+			_button.graphics.beginFill(0xff8080, 1);
 			_button.graphics.drawRect(0, 0, width, height);
 			_button.graphics.endFill();
-			_button.x = (stage.nativeWindow.width / 2) - (_button.width / 2);
-			_button.y = (stage.nativeWindow.height / 2) - (_button.height);
+			_button.x = (stage.nativeWindow.width / 2) * 0.5;
+			_button.y = stage.nativeWindow.height * 0.4;
+			//_button.y = stage.nativeWindow.height * 0.6;
 			_button.addEventListener(MouseEvent.CLICK, onClick);
 			
 			var format:TextFormat = new TextFormat();
@@ -95,7 +151,7 @@ package
 			
 			if (_packData && _packData.length > 0)
 			{
-				_outputManager.export("temp", _packData[0]); // _exportFolder에 저장하도록 변경
+				_outputManager.export(_exportFolder, "temp", _packData[0]); // 사용자가 입력한 파일명으로 저장하도록 수정
 				_packData.shift();
 			}
 			else
