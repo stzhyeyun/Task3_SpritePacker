@@ -51,25 +51,6 @@ package
 			}
 		}
 		
-		private function reset():void
-		{
-			_orderer = null;
-			
-			_loader.unload();
-			_loader = null;
-			
-			_loadList = null;
-			
-			if (_loadedBitmaps)
-			{
-				for (var i:int = 0; i < _loadedBitmaps.length; i++)
-				{					
-					_loadedBitmaps[i] = null;
-				}
-			}
-			_loadedBitmaps = null;
-		}
-		
 		private function load():void
 		{	
 			if (_loadList)
@@ -114,13 +95,39 @@ package
 			{
 				_isLoading = false;
 				shipBitmaps();
-				reset();
+				clean();
 			}
 		}
 		
 		private function shipBitmaps():void
 		{
 			_orderer.setBitmaps(_loadedBitmaps);	
+		}
+		
+		private function clean():void
+		{
+			_orderer = null;
+			
+			_loader.unload();
+			_loader = null;
+			
+			if (_loadList && _loadList.length > 0)
+			{
+				for (var i:int = 0; i < _loadList.length; i++)
+				{					
+					_loadList[i] = null;
+				}
+			}
+			_loadList = null;
+			
+			if (_loadedBitmaps && _loadedBitmaps.length > 0)
+			{
+				for (var i:int = 0; i < _loadedBitmaps.length; i++)
+				{					
+					_loadedBitmaps[i] = null;
+				}
+			}
+			_loadedBitmaps = null;
 		}
 	}
 }
