@@ -18,8 +18,29 @@ package
 		}
 		
 		public function pack(sprites:Vector.<Bitmap>, needToSort:Boolean):Vector.<PackData> // Maximal Rectangles Algorithm
+		public function clean():void
 		{
+			_maxSize = 0;
 			
+			if (_space && _space.length > 0)
+			{
+				for (var i:int = 0; i < _space.length; i++)
+				{
+					_space[i] = null;
+				}
+			}
+			_space = null;
+			
+			if (_packData && _packData.length > 0)
+			{
+				for (var i:int = 0; i < _space.length; i++)
+				{
+					_packData[i].dispose();
+					_packData[i] = null;
+				}
+			}
+			_packData = null;			
+		}
 			// 면적으로 정렬
 			if (needToSort)
 			{
