@@ -17,7 +17,6 @@ package
 			_maxSize = maxSize;
 		}
 		
-		public function pack(sprites:Vector.<Bitmap>, needToSort:Boolean):Vector.<PackData> // Maximal Rectangles Algorithm
 		public function clean():void
 		{
 			_maxSize = 0;
@@ -41,6 +40,9 @@ package
 			}
 			_packData = null;			
 		}
+		
+		public function pack(sprites:Vector.<Bitmap>, needToSort:Boolean):Vector.<PackData> // Maximal Rectangles Algorithm
+		{
 			// 면적으로 정렬
 			if (needToSort)
 			{
@@ -62,7 +64,7 @@ package
 				
 			// 패킹
 			var isPacked:Boolean = false;
-			//var unpackedSprites:Vector.<Bitmap>;
+			var unpackedSprites:Vector.<Bitmap>;
 			
 			while (sprites.length > 0)
 			{			
@@ -125,8 +127,13 @@ package
 				// 패킹되지 못한 스프라이트 저장
 				if (!isPacked)
 				{
+					if (!unpackedSprites)
 					{
+						unpackedSprites = new Vector.<Bitmap>();
 					}
+					unpackedSprites.push(sprites[0]);
+					
+					//trace("[Packer] Unpacked item : " + sprites[0].name);
 				}
 				sprites.shift();
 								
@@ -141,15 +148,16 @@ package
 			{
 				_packData = new Vector.<PackData>();
 			}
+			packData.id = _packData.length + 1;
 			_packData.push(packData);
 			
+			// Repack
+			if (unpackedSprites && unpackedSprites.length > 0)
 			{
-//				for (var i:int = 0; i < _space.length; i++)
-//				{
-//					_space.pop();
-//				}
-				_space = null;
+				trace("[Packer] Repack...");
 				
+				_space = null;
+				pack(unpackedSprites, false);
 			}
 			
 			return _packData;	
