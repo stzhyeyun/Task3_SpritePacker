@@ -104,8 +104,10 @@ package
 		private function clean():void
 		{
 			_exporter = null;
+			_outDirectory = null;
 			_outName = null;
 			_outdata.dispose();
+			_outdata = null;
 		}
 	}
 }
