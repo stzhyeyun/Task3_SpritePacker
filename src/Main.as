@@ -212,8 +212,10 @@ package
 			{
 				_exportFolder = new File();
 			}
-			_exportFolder.addEventListener(Event.SELECT, onExportFolderSelected);
-			_exportFolder.browseForDirectory("Select \"Export\" Folder");
+//			_exportFolder.addEventListener(Event.SELECT, onExportFolderSelected);
+//			_exportFolder.browseForDirectory("Select \"Export\" Folder");
+			
+			startLoading();
 		}
 		
 		private function onExportFolderSelected(event:Event):void
